@@ -147,7 +147,7 @@
     
    ## Join tables
    ### One to Many
-    - the **owning** side
+   - the **owning** side
         - usually the "one" side
         - use the `@JoinColumn` to declare the join column name (usually the foreign key in the parent
             ```
@@ -156,12 +156,13 @@
         - can also create an inverse join column (usually the foreign key in the child), 
             - ` inverseJoinColumns = @JoinColumn(name = "course_id"))`
     
-    - the **inverse/referencing**
-        - usually the "many" side with the foreign key
-        - use `mappedBy`, the value is the name of the entity on the owning side
-            ```
-            @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
-            ```
+ - the **inverse/referencing**
+      - usually the "many" side with the foreign key
+      - use `mappedBy`, the value is the name of the entity on the owning side
+        ```
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+        private List<Email> emails;
+        ```
  ### Many to Many
  -  https://www.baeldung.com/jpa-many-to-many
  - have each side declare the many to many relations, with the corresponding entity as a property
