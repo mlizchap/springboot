@@ -13,6 +13,7 @@
       - Spring Boot DevTools
       - PostgresSQL Driver
       - Rest Repositories
+      
    - click the generate button to download the file
 2. **Open up the initialized project in Springboot**
     - the zip file should now be in your `downloads` folder or wherever you downloaded it to, once found extract the files
@@ -30,9 +31,9 @@
       server.port=8080
 
       # postgres properties
-      spring.datasource.url=jdbc:postgresql://localhost:5432/friday
-      spring.datasource.username=<user>
-      spring.datasource.password=<password>
+      spring.datasource.url=jdbc:postgresql://localhost:5432/<DB NAME>
+      spring.datasource.username=<USER>
+      spring.datasource.password=<PASSWORD>
 
       #jpa properties
       spring.jpa.generate-ddl=true
@@ -45,8 +46,8 @@
     `CREATE DATABASE <database name>
     - create a new user with a password and grant privilages to that user
       ```     
-      $ CREATE USER tom WITH PASSWORD 'tom123';
-      $ GRANT ALL PRIVILEGES ON DATABASE springexample to tom;    
+      # CREATE USER tom WITH PASSWORD 'tom123';
+      # GRANT ALL PRIVILEGES ON DATABASE springexample to tom;    
       ```
  5. **Set up the data source and drivers**
     - on the righthand sidebar you should see a `Database` tab, click on it to open it
@@ -64,7 +65,7 @@
     - add `model` to the end of the package name
     - in the `model`folder you just created, right click to create a new class.  
       - Name it the name of your model. It is best practice to start it with an uppercase and to make it singular rather than plural. ex: `User`
-    - configure the class as a JPA entity with `@Entity`
+    - configure the model as a **JPA entity** with `@Entity`
       ```
       import javax.persistence.Entity;
 
@@ -74,7 +75,7 @@
       }
 
       ```
-    - annotate the class with a table name
+    - annotate the class with a **table name**
       ```
       import javax.persistence.Table;
 
@@ -83,7 +84,7 @@
 
       }
       ```
-    - add an id property for the model 
+    - add an **id property** for the model 
       - use the `@Id` and `@GeneratedValue` annotations to give it automatically generated ids
       - give it the `@Column` annotation to make the property a column in the table
       ```
@@ -92,7 +93,7 @@
       @GeneratedValue(strategy = GenerationType.IDENTITY)
       private int id;
       ```
-   - add the rest of the properties, make sure they at least have a `@Column` annotation
+   - add the rest of the **properties**, make sure they at least have a `@Column` annotation
       ```
       @Entity
       @Table(name = "course")
@@ -104,32 +105,48 @@
         private String name;
       ```
       }
-   -  create the getters and setters, as well as the constructor
-     ```
-     public class Course {
-      @Id
-      @Column
-      @GeneratedValue(strategy = GenerationType.IDENTITY)
-      private int id;
+   -  create the **getters** and **setters**, as well as the **constructor**
+         ```
+         public class Course {
+          @Id
+          @Column
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private int id;
 
-      @Column
-      private String code;
+          @Column
+          private String code;
 
-      @Column
-      private String name;
+          @Column
+          private String name;
 
-      public Course() { }
+          public Course() { }
 
-      public int getId() { return id; }
-          
-      public void setId(int id) {  this.id = id; }     
+          public int getId() { return id; }
 
-      public String getName() { return name; }
+          public void setId(int id) {  this.id = id; }     
 
-      public void setName(String name) {  this.name = name; }         
-     
-     }
-     ```
+          public String getName() { return name; }
+
+          public void setName(String name) {  this.name = name; }         
+
+         }
+         ```
+    - **CHECK**: go into the psql terminal. Go into your db (# \connect <DB NAME> and type `# \dt`.  You should now see a table corresponding to the model you just created.
+    - repeat these steps for the rest of your models.
+  - **Create the CRUD repository**
+    - create another package in your project directory (same folder as the model) and call it 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    Join tables
+    - 
 
 
           
