@@ -188,7 +188,27 @@
     }
    ```
 **8. Create the Controllers**
-    
+- create a controller package in your project folder (also same level as the model, repository, and service
+- in this package, create a new class called userController as well as a controller for the rest of your entities (models)
+- class annotations
+    - `@RestController`: establishes this class as a rest controller
+    -  `@RequestMapping("/<MODEL NAME>")`: this creates a route for the model you are working with, 
+        - for example if this is the user controller, the route would be /user
+- autowire the service interface with `@Autowired` to give the controller access to the service methods
+- controller functions:
+    - establish the type of request with `@GetMapping`, `@PostMapping`, `@PutMapping`, or `@DeleteMapping`
+        - these annotations also have an optional argument to specify a route]
+        - EX: ` @GetMapping("/list")`
+        - use the methods from services, and return an instance of courseService with the method that corresponds to the method you are writing
+        - ex: this will return a list of courses when the user goes to the /list route
+        ```
+         @GetMapping("/list")
+        public Iterable<Course> listCourse() {
+            return courseService.listCourses();
+        }
+        ```
+- **CHECK**: open postman and test the routes
+    - if the method has a `@RequestBody` annotation, you need to send info in the body of the request.
     
     
     
