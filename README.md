@@ -164,6 +164,7 @@
         }
         ```
 - **implementation class**
+    - annotate the class with @Service 
     - you will connect this class to the repository using Autowired
     - when creating methods
         - use`@Override` to override the methods in the interface
@@ -187,6 +188,39 @@
         }
     }
    ```
+   - crud repository methods you can use: `count()`, 
+        - CREATE: `saveAll(Iterable<S> entities)`, `save(S entity)`
+        - DELETE: `deleteAll()`, `deleteById(ID id)`, `deleteAll(Iterable<? extends T> entities)`, `delete(T entity)`
+        - READ: `findAll()`, `findAllById(Iterable<ID> ids)`, `findById(ID id)`
+        - EDIT: find() the item, use the setter to change the value of a property, save() the updated item
+        - HELPERS: `existsById(ID id)`
+   
+   long	
+Returns the number of entities available.
+void	
+Deletes a given entity.
+
+void	
+Deletes all entities managed by the repository.
+
+void	
+Deletes the given entities.
+void	
+Deletes the entity with the given id.
+boolean	
+Returns whether an entity with the given id exists.
+Iterable<T>	
+Returns all instances of the type.
+Iterable<T>	
+Returns all instances of the type with the given IDs.
+Optional<T>	
+Retrieves an entity by its id.
+<S extends T>
+S	
+Saves a given entity.
+<S extends T>
+Iterable<S>	
+Saves all given entities.
 **8. Create the Controllers**
 - create a controller package in your project folder (also same level as the model, repository, and service
 - in this package, create a new class called userController as well as a controller for the rest of your entities (models)
@@ -195,7 +229,16 @@
     -  `@RequestMapping("/<MODEL NAME>")`: this creates a route for the model you are working with, 
         - for example if this is the user controller, the route would be /user
 - autowire the service interface with `@Autowired` to give the controller access to the service methods
-- controller functions:
+- create an instance of the service in order to use the service methods
+    ```
+    @RestController
+    @RequestMapping("/course")
+    public class courseController {
+
+        // CONTROLLER METHODS WILL GO HERE
+    }
+    ```
+- creating the controller methodscontroller methods:
     - establish the type of request with `@GetMapping`, `@PostMapping`, `@PutMapping`, or `@DeleteMapping`
         - these annotations also have an optional argument to specify a route]
         - EX: ` @GetMapping("/list")`
