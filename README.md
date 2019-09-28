@@ -39,6 +39,8 @@
       spring.jpa.generate-ddl=true
       spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
       spring.jpa.show-sql=true
+      
+      spring.main.allow-bean-definition-overriding=true
       ```
 4.  **create the database**
     - open up your terminal and type `psql` to enter the Postgres terminal
