@@ -194,7 +194,7 @@
         - READ: `findAll()`, `findAllById(Iterable<ID> ids)`, `findById(ID id)`
         - EDIT: find() the item, use the setter to change the value of a property, save() the updated item
         - HELPERS: `existsById(ID id)`
-   
+
    long	
 Returns the number of entities available.
 void	
@@ -215,8 +215,7 @@ Iterable<T>
 Returns all instances of the type with the given IDs.
 Optional<T>	
 Retrieves an entity by its id.
-<S extends T>
-S	
+<S extends T>	
 Saves a given entity.
 <S extends T>
 Iterable<S>	
